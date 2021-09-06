@@ -1165,8 +1165,8 @@ func TestExpiredField(t *testing.T) {
 		Run(handler, func(r gofight.HTTPResponse, rq gofight.HTTPRequest) {
 			message := gjson.Get(r.Body.String(), "message")
 
-			assert.Equal(t, ErrWrongFormatOfExp.Error(), message.String())
-			assert.Equal(t, http.StatusBadRequest, r.Code)
+			assert.Equal(t, "Token is expired", message.String())
+			assert.Equal(t, http.StatusUnauthorized, r.Code)
 		})
 }
 
